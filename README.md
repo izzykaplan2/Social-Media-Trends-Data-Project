@@ -1,8 +1,10 @@
 # Social Media Trends
 
+ACAD 274 · Group 2
+
 A data project exploring trends in social media usage, published with GitHub Pages.
 
-**Live site:** https://izzykap1.github.io/Social-Media-Trends/ (after Pages is enabled)
+**Live site:** https://izzykaplan2.github.io/Social-Media-Trends-Data-Project/ (after Pages is enabled)
 
 ## Structure
 
