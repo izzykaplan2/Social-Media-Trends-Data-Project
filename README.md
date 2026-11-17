@@ -3,7 +3,7 @@
 ACAD 274 · Group 2
 
 A data project exploring trends in social media usage, published with GitHub Pages.
-
+upload image assets into assets subfolder
 **Live site:** https://izzykaplan2.github.io/Social-Media-Trends-Data-Project/ (after Pages is enabled)
 
 ## Where things go
