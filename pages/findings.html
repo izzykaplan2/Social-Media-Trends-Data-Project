@@ -9,7 +9,11 @@
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a class="brand" href="../index.html">Social Media Trends</a>
+      <a class="brand" href="../index.html" aria-label="Social Media Trends home">
+        <!-- DESIGN ASSET: assets/visualassets/brand/logo.(svg|png) -->
+        <figure class="asset-slot asset-slot--logo" data-src="../assets/visualassets/brand/logo"
+                data-label="Logo" data-alt="Social Media Trends"></figure>
+      </a>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="findings.html" aria-current="page">Findings</a></li>
@@ -20,24 +24,77 @@
   </header>
 
   <main>
-    <article class="prose">
+    <header class="section-head">
       <h1>Findings</h1>
-      <p>Summarize the main results of the analysis here.</p>
+      <p class="lede">Summarize the main results of the analysis here.</p>
+    </header>
 
-      <h2>Finding 1</h2>
-      <p>Describe what the data shows.</p>
-      <div class="chart-placeholder">Chart goes here</div>
+    <!-- ============ FINDING 1 ============
+         Chart data:    data/charts/finding-1.json
+         Design asset:  assets/visualassets/sections/finding-1.(png|jpg|webp|svg) -->
+    <section id="finding-1">
+      <div class="section-head">
+        <p class="eyebrow">Finding 1</p>
+        <h2>Finding 1 headline</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p>Describe what the data shows.</p>
+          <p class="muted">Add context: why it matters, what might explain it.</p>
+        </div>
+        <figure class="chart" data-chart="../data/charts/finding-1.json"></figure>
+      </div>
+      <figure class="asset-slot asset-slot--section" data-src="../assets/visualassets/sections/finding-1"
+              data-label="Finding 1 graphic" data-size="1200 × 675"></figure>
+    </section>
 
-      <h2>Finding 2</h2>
-      <p>Describe what the data shows.</p>
-      <div class="chart-placeholder">Chart goes here</div>
-    </article>
+    <!-- ============ FINDING 2 ============
+         Chart data:    data/charts/finding-2.json
+         Design asset:  assets/visualassets/sections/finding-2.(png|jpg|webp|svg) -->
+    <section id="finding-2">
+      <div class="section-head">
+        <p class="eyebrow">Finding 2</p>
+        <h2>Finding 2 headline</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p>Describe what the data shows.</p>
+          <p class="muted">Add context: why it matters, what might explain it.</p>
+        </div>
+        <figure class="chart" data-chart="../data/charts/finding-2.json"></figure>
+      </div>
+      <figure class="asset-slot asset-slot--section" data-src="../assets/visualassets/sections/finding-2"
+              data-label="Finding 2 graphic" data-size="1200 × 675"></figure>
+    </section>
+
+    <!-- ============ FINDING 3 ============
+         Chart data:    data/charts/finding-3.json
+         Design asset:  assets/visualassets/sections/finding-3.(png|jpg|webp|svg) -->
+    <section id="finding-3">
+      <div class="section-head">
+        <p class="eyebrow">Finding 3</p>
+        <h2>Finding 3 headline</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p>Describe what the data shows.</p>
+          <p class="muted">Add context: why it matters, what might explain it.</p>
+        </div>
+        <figure class="chart" data-chart="../data/charts/finding-3.json"></figure>
+      </div>
+      <figure class="asset-slot asset-slot--section" data-src="../assets/visualassets/sections/finding-3"
+              data-label="Finding 3 graphic" data-size="1200 × 675"></figure>
+    </section>
+
+    <!-- To add Finding 4: copy a block above, change the numbers,
+         add data/charts/finding-4.json and (optionally) a design asset. -->
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Social Media Trends</p>
+    <p>&copy; <span id="year"></span> Social Media Trends · ACAD 274 Group 2</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

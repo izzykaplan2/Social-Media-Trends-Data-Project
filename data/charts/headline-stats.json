@@ -1,0 +1,8 @@
+{
+  "placeholder": true,
+  "stats": [
+    { "value": "0.0B", "label": "Headline stat 1 — replace me" },
+    { "value": "00%", "label": "Headline stat 2 — replace me" },
+    { "value": "0 hrs", "label": "Headline stat 3 — replace me" }
+  ]
+}

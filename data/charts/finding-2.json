@@ -1,0 +1,14 @@
+{
+  "title": "Finding 2 chart title",
+  "subtitle": "Units, date range",
+  "type": "bar",
+  "x_label": "Age group",
+  "y_label": "Percent",
+  "labels": ["13–17", "18–24", "25–34", "35–49", "50+"],
+  "series": [
+    { "name": "Group 1", "values": [62, 58, 44, 31, 18] },
+    { "name": "Group 2", "values": [40, 49, 51, 42, 30] }
+  ],
+  "source": "Source name, year",
+  "placeholder": true
+}

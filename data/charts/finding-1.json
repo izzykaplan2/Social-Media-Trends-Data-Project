@@ -1,0 +1,15 @@
+{
+  "title": "Finding 1 chart title",
+  "subtitle": "Units, date range",
+  "type": "line",
+  "x_label": "Year",
+  "y_label": "Value",
+  "labels": ["2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+  "series": [
+    { "name": "Platform A", "values": [10, 18, 27, 35, 41, 46, 50] },
+    { "name": "Platform B", "values": [30, 32, 33, 33, 34, 34, 35] },
+    { "name": "Platform C", "values": [25, 24, 22, 20, 19, 17, 16] }
+  ],
+  "source": "Source name, year",
+  "placeholder": true
+}

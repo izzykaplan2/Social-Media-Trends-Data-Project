@@ -10,7 +10,11 @@
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a class="brand" href="index.html">Social Media Trends</a>
+      <a class="brand" href="index.html" aria-label="Social Media Trends home">
+        <!-- DESIGN ASSET: assets/visualassets/brand/logo.(svg|png) -->
+        <figure class="asset-slot asset-slot--logo" data-src="assets/visualassets/brand/logo"
+                data-label="Logo" data-alt="Social Media Trends"></figure>
+      </a>
       <ul class="nav-links">
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="pages/findings.html">Findings</a></li>
@@ -21,13 +25,61 @@
   </header>
 
   <main>
-    
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div>
+        <p class="eyebrow">ACAD 274 · Group 2</p>
+        <h1>Project headline goes here</h1>
+        <p class="lede">One or two sentences on the question this project answers about social media trends.</p>
+        <a class="button" href="pages/findings.html">See the findings</a>
+      </div>
+      <!-- DESIGN ASSET: assets/visualassets/hero/hero.(png|jpg|webp|svg) -->
+      <figure class="asset-slot asset-slot--hero" data-src="assets/visualassets/hero/hero"
+              data-label="Hero image" data-size="1600 × 900"></figure>
+    </section>
+
+    <!-- ============ HEADLINE STATS — edit data/charts/headline-stats.json ============ -->
+    <section>
+      <div class="section-head">
+        <p class="eyebrow">At a glance</p>
+        <h2>Key numbers</h2>
+      </div>
+      <div class="stats" data-stats="data/charts/headline-stats.json"></div>
+    </section>
+
+    <!-- ============ FEATURED CHART — edit data/charts/finding-1.json ============ -->
+    <section class="split">
+      <div>
+        <p class="eyebrow">Featured</p>
+        <h2>The biggest takeaway</h2>
+        <p>Explain what this chart shows and why it matters in two or three sentences.</p>
+        <a href="pages/findings.html">All findings &rarr;</a>
+      </div>
+      <figure class="chart" data-chart="data/charts/finding-1.json"></figure>
+    </section>
+
+    <!-- ============ SECTION CARDS ============ -->
+    <section class="cards">
+      <a class="card" href="pages/findings.html">
+        <h2>Findings</h2>
+        <p class="muted">What the data shows.</p>
+      </a>
+      <a class="card" href="pages/data.html">
+        <h2>Data &amp; Methods</h2>
+        <p class="muted">Where the data came from and how we analyzed it.</p>
+      </a>
+      <a class="card" href="pages/about.html">
+        <h2>About</h2>
+        <p class="muted">The team behind the project.</p>
+      </a>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Social Media Trends</p>
+    <p>&copy; <span id="year"></span> Social Media Trends · ACAD 274 Group 2</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

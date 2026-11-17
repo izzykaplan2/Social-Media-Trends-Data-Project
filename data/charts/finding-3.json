@@ -1,0 +1,11 @@
+{
+  "title": "Finding 3 chart title",
+  "subtitle": "Share of total",
+  "type": "doughnut",
+  "labels": ["Category A", "Category B", "Category C", "Other"],
+  "series": [
+    { "name": "Share", "values": [42, 28, 18, 12] }
+  ],
+  "source": "Source name, year",
+  "placeholder": true
+}

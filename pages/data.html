@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data & Methods · Social Media Trends</title>
+  <title>Data &amp; Methods · Social Media Trends</title>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a class="brand" href="../index.html">Social Media Trends</a>
+      <a class="brand" href="../index.html" aria-label="Social Media Trends home">
+        <!-- DESIGN ASSET: assets/visualassets/brand/logo.(svg|png) -->
+        <figure class="asset-slot asset-slot--logo" data-src="../assets/visualassets/brand/logo"
+                data-label="Logo" data-alt="Social Media Trends"></figure>
+      </a>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="findings.html">Findings</a></li>
@@ -20,16 +24,31 @@
   </header>
 
   <main>
+    <!-- DESIGN ASSET: assets/visualassets/sections/data-methods.(png|jpg|webp|svg) -->
+    <figure class="asset-slot asset-slot--wide" data-src="../assets/visualassets/sections/data-methods"
+            data-label="Data &amp; Methods banner" data-size="1200 × 400"></figure>
+
     <article class="prose">
       <h1>Data &amp; Methods</h1>
+
       <h2>Sources</h2>
-      <p>List each dataset, where it came from, and the date range it covers.</p>
+      <ul>
+        <li><strong>Dataset name</strong> — publisher, link, date range covered.</li>
+        <li><strong>Dataset name</strong> — publisher, link, date range covered.</li>
+      </ul>
+
+      <h2>Pipeline</h2>
+      <ol>
+        <li>Original downloads go in <code>data/raw/</code> (never edited by hand).</li>
+        <li>Cleaning code in <code>scripts/</code> or <code>notebooks/</code> writes to <code>data/processed/</code>.</li>
+        <li>Numbers shown on this site are exported to JSON files in <code>data/charts/</code>, which the charts read directly.</li>
+      </ol>
 
       <h2>Cleaning</h2>
-      <p>Explain how raw files in <code>data/raw/</code> were turned into the processed files in <code>data/processed/</code>.</p>
+      <p>Explain how raw files were turned into processed files.</p>
 
       <h2>Analysis</h2>
-      <p>Describe the methods used. Code lives in <code>scripts/</code> and <code>notebooks/</code>.</p>
+      <p>Describe the methods used.</p>
 
       <h2>Limitations</h2>
       <p>Note any gaps or biases in the data.</p>
@@ -37,9 +56,10 @@
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Social Media Trends</p>
+    <p>&copy; <span id="year"></span> Social Media Trends · ACAD 274 Group 2</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>

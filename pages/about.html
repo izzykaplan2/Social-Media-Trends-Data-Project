@@ -9,7 +9,11 @@
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a class="brand" href="../index.html">Social Media Trends</a>
+      <a class="brand" href="../index.html" aria-label="Social Media Trends home">
+        <!-- DESIGN ASSET: assets/visualassets/brand/logo.(svg|png) -->
+        <figure class="asset-slot asset-slot--logo" data-src="../assets/visualassets/brand/logo"
+                data-label="Logo" data-alt="Social Media Trends"></figure>
+      </a>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="findings.html">Findings</a></li>
@@ -23,14 +27,27 @@
     <article class="prose">
       <h1>About</h1>
       <p>Who made this project, and why.</p>
-      <p>Source code: <a href="https://github.com/izzykaplan2/Social-Media-Trends-Data-Project">github.com/izzykaplan2/Social-Media-Trends-Data-Project</a></p>
     </article>
+
+    <!-- DESIGN ASSET: assets/visualassets/team/team.(png|jpg|webp) -->
+    <figure class="asset-slot asset-slot--section" data-src="../assets/visualassets/team/team"
+            data-label="Team photo" data-size="1200 × 800"></figure>
+
+    <section class="cards">
+      <div class="card"><h2>Name</h2><p class="muted">Role — data / design / writing</p></div>
+      <div class="card"><h2>Name</h2><p class="muted">Role — data / design / writing</p></div>
+      <div class="card"><h2>Name</h2><p class="muted">Role — data / design / writing</p></div>
+      <div class="card"><h2>Name</h2><p class="muted">Role — data / design / writing</p></div>
+    </section>
+
+    <p>Source code: <a href="https://github.com/izzykaplan2/Social-Media-Trends-Data-Project">github.com/izzykaplan2/Social-Media-Trends-Data-Project</a></p>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Social Media Trends</p>
+    <p>&copy; <span id="year"></span> Social Media Trends · ACAD 274 Group 2</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
