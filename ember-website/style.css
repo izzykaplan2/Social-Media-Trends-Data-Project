@@ -662,3 +662,40 @@ th {
 .interior .glow-lower {
     top: -450px;
 }
+
+/* Chart layouts added by the data visualization team. */
+.chart-figure {
+    margin: 20px 0 0;
+    padding: 24px;
+    border: 1px solid #403042;
+    border-radius: 12px;
+    background: #111014;
+}
+
+.chart-figure figcaption {
+    margin-bottom: 16px;
+    color: #bdb5af;
+}
+
+.chart-box {
+    position: relative;
+    height: 420px;
+}
+
+.chart-figure.is-error .chart-box,
+.chart-figure.is-error .heatmap-scroll {
+    display: none;
+}
+
+.chart-status {
+    margin: 12px 0 0;
+    color: #bdb5af;
+}
+
+.heatmap-scroll {
+    overflow-x: auto;
+}
+
+.heatmap {
+    min-width: 760px;
+}
