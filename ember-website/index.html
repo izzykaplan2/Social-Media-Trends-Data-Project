@@ -62,13 +62,15 @@
       <section class="search-band" aria-labelledby="search-title">
         <h2 id="search-title"><label for="search-query">Find a trailer</label></h2>
         <form id="search-form" role="search">
-          <input id="search-query" type="search" name="q" placeholder="Search a trailer, e.g. Deadpool &amp; Wolverine" aria-describedby="search-help" aria-controls="trailers">
+          <input id="search-query" type="search" name="search" placeholder="Search the dataset, e.g. Rampage or Deadpool" aria-describedby="search-help" aria-controls="results">
           <button type="submit">Search</button>
         </form>
-        <p id="search-help">Search the example titles above. Clear the field to show all.</p>
+        <p id="search-help">Search trailer titles in our collected dataset. Up to 50 matching snapshot records, ordered by views.</p>
         <p id="search-status" role="status" aria-atomic="true"></p>
-        <noscript><p>Enable JavaScript to filter the trailer cards.</p></noscript>
+        <noscript><p>Enable JavaScript to search the trailer dataset.</p></noscript>
       </section>
+
+      <div id="results" class="content-width" aria-busy="false"></div>
 
       <section class="about content-width" id="about" aria-labelledby="purpose-title">
         <p class="eyebrow">About this project</p>
@@ -87,30 +89,80 @@
     </main>
     <footer class="content-width">Ember · ACAD 274 Designing Interactive Data Systems · USC Iovine and Young Academy</footer>
   </div>
+  <!-- Load jQuery before the script that uses it. -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script>
-    const form = document.querySelector('#search-form');
-    const queryInput = document.querySelector('#search-query');
-    const status = document.querySelector('#search-status');
-    const cards = [...document.querySelectorAll('.trailer-card')];
+    let data = [];
+    // Keep the homepage and API on the same PHP website.
+    let jsonurl = "../api/search-trailers.php";
 
-    function filterTrailers() {
-      const query = queryInput.value.trim().toLowerCase();
-      let count = 0;
-      for (const card of cards) {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        card.hidden = !title.includes(query);
-        if (!card.hidden) count += 1;
-      }
-      status.textContent = count === 0
-        ? 'No matching example titles. Try another search.'
-        : `Showing ${count} of ${cards.length} example titles in the cards above.`;
-    }
+    $(document).ready(function() {
+      $("#search-form").on("submit", function(event) {
+        event.preventDefault();
+        let search = $("#search-query").val().trim();
+        $("#results").empty();
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      filterTrailers();
+        if (search == "") {
+          $("#search-status").text("Enter part of a trailer title to search.");
+          return;
+        }
+
+        $("#search-status").text("Loading . . .");
+        $("#results").attr("aria-busy", "true");
+        $("#search-form button").prop("disabled", true);
+
+        $.ajax({
+          url: jsonurl,
+          type: "GET",
+          dataType: "json",
+          data: { search: search },
+          timeout: 15000
+        }).done(function(rawdata) {
+          // dataType json already converts the response to an array.
+          if (!Array.isArray(rawdata)) {
+            $("#search-status").text("The server returned an unexpected response.");
+            return;
+          }
+          data = rawdata;
+          output();
+        }).fail(function() {
+          $("#search-status").text("Could not load trailers. Check that the PHP API and database connection are running.");
+        }).always(function() {
+          $("#results").attr("aria-busy", "false");
+          $("#search-form button").prop("disabled", false);
+        });
+      });
     });
-    queryInput.addEventListener('input', filterTrailers);
+
+    const output = function() {
+      if (data.length == 0) {
+        $("#search-status").text("No matching trailer records found.");
+        return;
+      }
+
+      let table = $("<table>");
+      table.append("<caption>Matching trailer snapshots — ordered by views</caption>");
+      table.append("<thead><tr><th scope='col'>Trailer</th><th scope='col'>Channel</th><th scope='col'>Views</th><th scope='col'>Likes</th><th scope='col'>Comments</th><th scope='col'>Trending date (YY.DD.MM)</th></tr></thead>");
+      let rows = $("<tbody>");
+
+      for (let i = 0; i < data.length; i++) {
+        let row = $("<tr>");
+        // text() displays database values as text, including any HTML characters.
+        row.append($("<td>").text(data[i].title));
+        row.append($("<td>").text(data[i].channel_title));
+        row.append($("<td>").text(data[i].views));
+        row.append($("<td>").text(data[i].likes));
+        row.append($("<td>").text(data[i].comment_count));
+        row.append($("<td>").text(data[i].trending_date));
+        rows.append(row);
+      }
+
+      table.append(rows);
+      let container = $("<div class='table-wrap' tabindex='0' role='region' aria-label='Trailer search results'>");
+      container.append(table);
+      $("#results").append(container);
+      $("#search-status").text("Showing " + data.length + " matching snapshot records below, up to 50. A video can appear on several trending dates.");
+    };
   </script>
 </body>
 </html>
