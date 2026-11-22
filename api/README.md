@@ -23,3 +23,11 @@ One object per genre, sorted by average engagement.
 ```js
 fetch('api/genres.php').then(r => r.json()).then(data => console.log(data));
 ```
+
+### `search-trailers.php`
+
+Used by `ember-website/index.html`. A GET request with `?search=Rampage` returns up to 50 matching rows from `Movie_trailers`, ordered by views. The fields are `video_id`, `title`, `channel_title`, `views`, `likes`, `comment_count`, and `trending_date`. This endpoint preserves separate trending-date snapshots of the same video.
+
+Upload both the `api/` and `ember-website/` folders to the same PHP website, keeping them beside each other. Create `api/config.php` on that server from the connection example and use the verified database host, username, password, and exact database name `mfcarlin_youtubetrending`. The screenshot showed the username `mfcarlin_group2_users`. Confirm the host with the team because a server-side PHP connection may use a different host from DataGrip. The config must define `$mysqli`.
+
+Test `api/search-trailers.php?search=Rampage` in the browser first. It should return a JSON array. Then open `ember-website/index.html` on that same PHP website and search for Rampage. An empty search returns an empty array. PHP and the live database have not been tested from the local development environment.
