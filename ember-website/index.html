@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="EMBER explores audience engagement with movie trailers on YouTube.">
+  <title>EMBER — Movie trailer analytics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site">
+    <img class="glow glow-upper" src="assets/upper-glow.svg" alt="" aria-hidden="true">
+    <img class="glow glow-lower" src="assets/lower-glow.svg" alt="" aria-hidden="true">
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="index.html"><img src="assets/flame.svg" alt="">Ember</a>
+        <div class="nav-links">
+          <a href="index.html" aria-current="page">Explore</a>
+          <a href="analytics.html">Analytics</a>
+          <a href="resources.html">Resources</a>
+          <a href="#about">About</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-heading">
+          <p class="eyebrow">YouTube movie trailer analytics</p>
+          <h1 id="hero-title">See what’s heating up</h1>
+        </div>
+        <p class="hero-description">Track how trailer length, genre, and audience engagement shape a movie’s buzz before it opens.</p>
+      </section>
+
+      <section class="trending" aria-labelledby="trending-title">
+        <h2 id="trending-title">Trending trailers on YouTube</h2>
+        <p class="section-note">Example titles from the design. Rankings, images, and engagement data pending.</p>
+        <div class="trailer-grid" id="trailers">
+          <article class="trailer-card">
+            <div class="thumbnail"><span>Image pending</span></div>
+            <h3>The Odyssey: Official Trailer</h3>
+            <p>Engagement data pending</p>
+          </article>
+          <article class="trailer-card">
+            <div class="thumbnail"><span>Image pending</span></div>
+            <h3>Obsession: Official Trailer</h3>
+            <p>Engagement data pending</p>
+          </article>
+          <article class="trailer-card">
+            <div class="thumbnail"><span>Image pending</span></div>
+            <h3>You Can See Everything: Official Trailer</h3>
+            <p>Engagement data pending</p>
+          </article>
+          <article class="trailer-card">
+            <div class="thumbnail"><span>Image pending</span></div>
+            <h3>Deadpool &amp; Wolverine: Official Trailer</h3>
+            <p>Engagement data pending</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="search-band" aria-labelledby="search-title">
+        <h2 id="search-title"><label for="search-query">Find a trailer</label></h2>
+        <form id="search-form" role="search">
+          <input id="search-query" type="search" name="q" placeholder="Search a trailer, e.g. Deadpool &amp; Wolverine" aria-describedby="search-help" aria-controls="trailers">
+          <button type="submit">Search</button>
+        </form>
+        <p id="search-help">Search the example titles above. Clear the field to show all.</p>
+        <p id="search-status" role="status" aria-atomic="true"></p>
+        <noscript><p>Enable JavaScript to filter the trailer cards.</p></noscript>
+      </section>
+
+      <section class="about content-width" id="about" aria-labelledby="purpose-title">
+        <p class="eyebrow">About this project</p>
+        <h2 id="purpose-title">Purpose of the site</h2>
+        <p class="purpose-copy">Movie trailers are a major part of how films are marketed, but it’s hard to tell which ones actually connect with audiences. Ember looks at YouTube engagement data (views, likes, comments, trailer length, genre, and studio) to identify trends in trailer popularity and to explore how online engagement relates to audience interest and, potentially, box office performance.</p>
+        <p class="callout">Ember focuses on trailers and film marketing.</p>
+
+        <h2 class="assumptions-title">Assumptions</h2>
+        <ol class="assumptions">
+          <li><span aria-hidden="true">01</span>YouTube engagement (views, likes, comments) is a reasonable signal of audience interest in a trailer.</li>
+          <li><span aria-hidden="true">02</span>Trailer length and genre are useful ways to group and compare trailers.</li>
+          <li><span aria-hidden="true">03</span>Engagement numbers are a snapshot taken when the data was collected. Comparisons need to account for collection dates and time since publication.</li>
+          <li><span aria-hidden="true">04</span>Box office results come from a separate source, so any link to engagement is exploratory. We report correlation, not cause.</li>
+        </ol>
+      </section>
+    </main>
+    <footer class="content-width">Ember · ACAD 274 Designing Interactive Data Systems · USC Iovine and Young Academy</footer>
+  </div>
+  <script>
+    const form = document.querySelector('#search-form');
+    const queryInput = document.querySelector('#search-query');
+    const status = document.querySelector('#search-status');
+    const cards = [...document.querySelectorAll('.trailer-card')];
+
+    function filterTrailers() {
+      const query = queryInput.value.trim().toLowerCase();
+      let count = 0;
+      for (const card of cards) {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.hidden = !title.includes(query);
+        if (!card.hidden) count += 1;
+      }
+      status.textContent = count === 0
+        ? 'No matching example titles. Try another search.'
+        : `Showing ${count} of ${cards.length} example titles in the cards above.`;
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      filterTrailers();
+    });
+    queryInput.addEventListener('input', filterTrailers);
+  </script>
+</body>
+</html>
