@@ -729,3 +729,7 @@ td.num, th.num {
 td.nowrap, th.nowrap {
     white-space: nowrap;
 }
+
+.chart-status:empty {
+    display: none;
+}

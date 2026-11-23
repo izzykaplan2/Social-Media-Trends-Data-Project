@@ -25,7 +25,7 @@
     <main id="main" class="page content-width">
       <p class="eyebrow">Explore the data</p>
       <h1>Analytics</h1>
-      <p class="intro">Each section pairs a data table with charts that answer one research question. The tables and the image charts come from our database query of movie trailers that trended on YouTube in November 2017 (each video counted once, at its highest recorded view count). The interactive charts load live from the class database.</p>
+      <p class="intro">Each section pairs a data table with charts that answer one research question. The tables and the image charts come from our database query of movie trailers that trended on YouTube in November 2017 (each video counted once, at its highest recorded view count). The view-curve and rank charts use the full trending dataset joined with 2018 box office figures.</p>
       <section class="analysis-section" aria-labelledby="attention">
         <h2 id="attention">Most-viewed trailers</h2>
         <p>Which movie trailers generate the most attention on YouTube?</p>
@@ -59,10 +59,32 @@
           <img src="assets/charts/img1data.png" alt="Line chart ranking the ten most-viewed trailers: Rampage about 12.8 million, Deadpool 10.7 million, Incredibles 2 9.9 million, then a drop to A Quiet Place at 4.3 million and under 3 million for the rest" width="1194" height="718" loading="lazy">
           <p class="chart-takeaway">Rampage drew the largest audience, with about 12.8 million views, followed by Deadpool at 10.7 million and Incredibles 2 at 9.9 million. These three trailers far outperformed the rest of the sample.</p>
         </figure>
-        <figure class="chart-figure" data-chart="trajectories">
+        <figure class="chart-figure" data-static-chart="trajectories">
           <figcaption>How views climb for the eight most-viewed official trailers, by days since each first trended</figcaption>
           <div class="chart-box"><canvas role="img" aria-label="Line chart of views over days since first trending for the eight most-viewed official trailers"></canvas></div>
-          <p class="chart-status" role="status">Loading chart…</p>
+          <p class="chart-status" role="status"></p>
+          <p class="chart-takeaway">Most of a big trailer's views arrive in its first few days on trending. Avengers: Infinity War passed 90 million views in just over a week, while most trailers flatten out after day five.</p>
+        </figure>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Trailer views rank and opening weekend rank table">
+          <table id="rank-table">
+            <caption>Top 12 films by trailer views, with 2018 domestic opening weekend</caption>
+            <thead>
+              <tr>
+                <th scope="col">Film</th>
+                <th scope="col" class="num">Trailer views</th>
+                <th scope="col" class="num">Views rank</th>
+                <th scope="col" class="num">Opening weekend</th>
+                <th scope="col" class="num">Opening rank</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <figure class="chart-figure" data-static-chart="slope">
+          <figcaption>YouTube trailer views rank vs. opening weekend rank</figcaption>
+          <div class="chart-box"><canvas role="img" aria-label="Slope chart comparing each film's trailer views rank with its opening weekend rank"></canvas></div>
+          <p class="chart-status" role="status"></p>
+          <p class="chart-takeaway">Green lines climbed (the film did better in theaters than its trailer did on YouTube); red lines fell (YouTube hype didn't translate into ticket sales). Box office source: The Numbers, Top 2018 Domestic.</p>
         </figure>
       </section>
       <section class="analysis-section" aria-labelledby="engagement">
@@ -106,11 +128,6 @@
           <img src="assets/charts/img2data.png" alt="Scatter plot of views in millions against engagement rate. Most trailers sit under 1 million views with engagement between 0 and 6.5 percent; the three biggest trailers sit between 1.2 and 3 percent." width="918" height="744" loading="lazy">
           <p class="chart-takeaway">More views don't mean a bigger share of viewers engage: Rampage had the most views but only a 1.21% engagement rate, compared with 2.93% for Deadpool and 3.00% for Incredibles 2. Views measure reach, while engagement shows how strongly the audience responded.</p>
         </figure>
-        <figure class="chart-figure" data-chart="controversy">
-          <figcaption>Controversy map: comment rate versus dislike share for the 400 most-viewed videos (red = more than 20% dislikes)</figcaption>
-          <div class="chart-box"><canvas role="img" aria-label="Scatter plot of comments per 100 views against dislike share for the 400 most-viewed videos"></canvas></div>
-          <p class="chart-status" role="status">Loading chart…</p>
-        </figure>
       </section>
       <section class="analysis-section" aria-labelledby="channels">
         <h2 id="channels">Channel performance</h2>
@@ -138,51 +155,17 @@
           <p class="chart-takeaway">Among channels with at least two trailers in the sample, 20th Century Fox led with about 6.70 million views per trailer, compared with 2.13 million for Paramount Pictures and 239,000 for Netflix. Each channel had only two videos, so this doesn't establish overall channel performance.</p>
         </figure>
       </section>
-      <section class="analysis-section" aria-labelledby="timing">
-        <h2 id="timing">When trending videos are published</h2>
-        <p>Which publish days and hours produce the most trending videos?</p>
-        <figure class="chart-figure" data-chart="heatmap">
-          <figcaption>Unique trending videos by publish weekday and hour (UTC)</figcaption>
-          <div class="heatmap-scroll" tabindex="0" role="region" aria-label="Heatmap of trending videos by publish weekday and hour"><div class="heatmap"></div></div>
-          <p class="chart-status" role="status">Loading chart…</p>
-        </figure>
-      </section>
     </main>
     <footer class="content-width">Ember · ACAD 274 Designing Interactive Data Systems · USC Iovine and Young Academy</footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
-  <script type="module">
-    import { renderTrajectories, renderHeatmap, renderControversy } from './izzycharts/charts.js';
-
-    // PHP endpoint on the class server (uses api/config.php for the DB connection)
-    const API = '../api/charts.php';
-
-    const RENDERERS = {
-      trajectories: (fig, rows) => renderTrajectories(fig.querySelector('canvas'), rows),
-      controversy:  (fig, rows) => renderControversy(fig.querySelector('canvas'), rows),
-      heatmap:      (fig, rows) => renderHeatmap(fig.querySelector('.heatmap'), rows),
-    };
-
+  <script>
     // Match Chart.js text and gridlines to the dark theme
     Chart.defaults.color = '#bdb5af';
     Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
     Chart.defaults.maintainAspectRatio = false;
-
-    for (const fig of document.querySelectorAll('[data-chart]')) {
-      const status = fig.querySelector('.chart-status');
-      fetch(`${API}?chart=${fig.dataset.chart}`)
-        .then(async res => {
-          const body = await res.json().catch(() => null);
-          if (!res.ok || !Array.isArray(body)) throw new Error(body?.error || `HTTP ${res.status}`);
-          if (!body.length) throw new Error('The query returned no rows.');
-          RENDERERS[fig.dataset.chart](fig, body);
-          status.remove();
-        })
-        .catch(err => {
-          fig.classList.add('is-error');
-          status.textContent = `Chart data couldn’t load (${err.message}). The data comes from the PHP API, so this page has to be served from the class server.`;
-        });
-    }
   </script>
+  <script src="izzycharts/films-data.js"></script>
+  <script src="izzycharts/static-charts.js"></script>
 </body>
 </html>
