@@ -25,31 +25,66 @@
     <main id="main" class="page content-width">
       <p class="eyebrow">Explore the data</p>
       <h1>Analytics</h1>
-      <p class="intro">These sections follow the three analyses in the team’s screenshots. Charts load live from the class database; tables are still pending. No numeric values have been inferred from the screenshots.</p>
+      <p class="intro">Each section pairs a data table with charts that answer one research question. The tables and the image charts come from our database query of movie trailers that trended on YouTube in November 2017 (each video counted once, at its highest recorded view count). The view-curve and rank charts use the full trending dataset joined with 2018 box office figures.</p>
       <section class="analysis-section" aria-labelledby="attention">
         <h2 id="attention">Most-viewed trailers</h2>
         <p>Which movie trailers generate the most attention on YouTube?</p>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Most-viewed trailers table">
           <table>
-            <caption>Most-viewed trailers — data pending</caption>
+            <caption>Top 10 trailers by views</caption>
             <thead>
               <tr>
                 <th scope="col">Trailer</th>
-                <th scope="col">Views</th>
-                <th scope="col">Collected on</th>
+                <th scope="col">Channel</th>
+                <th scope="col" class="num">Views</th>
+                <th scope="col" class="nowrap">Trending date</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colspan="3">Awaiting verified query results.</td>
-              </tr>
+              <tr><td>RAMPAGE - OFFICIAL TRAILER 1 [HD]</td><td>Warner Bros. Pictures</td><td class="num">12,776,633</td><td class="nowrap">Nov 20, 2017</td></tr>
+              <tr><td>Deadpool’s “Wet on Wet” Teaser</td><td>20th Century Fox</td><td class="num">10,729,515</td><td class="nowrap">Nov 20, 2017</td></tr>
+              <tr><td>Incredibles 2 Official Teaser Trailer</td><td>Disney•Pixar</td><td class="num">9,920,833</td><td class="nowrap">Nov 20, 2017</td></tr>
+              <tr><td>A Quiet Place (2018) - Official Teaser Trailer - Paramount Pictures</td><td>Paramount Pictures</td><td class="num">4,251,667</td><td class="nowrap">Nov 20, 2017</td></tr>
+              <tr><td>The Greatest Showman | Official Trailer 2 [HD] | 20th Century FOX</td><td>20th Century Fox</td><td class="num">2,671,756</td><td class="nowrap">Nov 15, 2017</td></tr>
+              <tr><td>Game Night Official Trailer #1 (2018) Rachel McAdams, Jason Bateman Comedy Movie HD</td><td>Zero Media</td><td class="num">2,122,489</td><td class="nowrap">Nov 16, 2017</td></tr>
+              <tr><td>F The Prom (2017) | Official Trailer HD</td><td>The Orchard Movies</td><td class="num">766,661</td><td class="nowrap">Nov 19, 2017</td></tr>
+              <tr><td>Batman: Gotham by Gaslight - Exclusive Trailer (2018)</td><td>IGN</td><td class="num">629,166</td><td class="nowrap">Nov 17, 2017</td></tr>
+              <tr><td>Dark | Official Trailer [HD] | Netflix</td><td>Netflix</td><td class="num">378,750</td><td class="nowrap">Nov 14, 2017</td></tr>
+              <tr><td>THE SHAPE OF WATER - Final Trailer</td><td>FoxSearchlight</td><td class="num">366,814</td><td class="nowrap">Nov 15, 2017</td></tr>
             </tbody>
           </table>
         </div>
-        <figure class="chart-figure" data-chart="trajectories">
+        <figure class="chart-figure chart-image">
+          <figcaption>Top 10 movie trailers on YouTube by views (millions)</figcaption>
+          <img src="assets/charts/img1data.png" alt="Line chart ranking the ten most-viewed trailers: Rampage about 12.8 million, Deadpool 10.7 million, Incredibles 2 9.9 million, then a drop to A Quiet Place at 4.3 million and under 3 million for the rest" width="1194" height="718" loading="lazy">
+          <p class="chart-takeaway">Rampage drew the largest audience, with about 12.8 million views, followed by Deadpool at 10.7 million and Incredibles 2 at 9.9 million. These three trailers far outperformed the rest of the sample.</p>
+        </figure>
+        <figure class="chart-figure" data-static-chart="trajectories">
           <figcaption>How views climb for the eight most-viewed official trailers, by days since each first trended</figcaption>
           <div class="chart-box"><canvas role="img" aria-label="Line chart of views over days since first trending for the eight most-viewed official trailers"></canvas></div>
-          <p class="chart-status" role="status">Loading chart…</p>
+          <p class="chart-status" role="status"></p>
+          <p class="chart-takeaway">Most of a big trailer's views arrive in its first few days on trending. Avengers: Infinity War passed 90 million views in just over a week, while most trailers flatten out after day five.</p>
+        </figure>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Trailer views rank and opening weekend rank table">
+          <table id="rank-table">
+            <caption>Top 12 films by trailer views, with 2018 domestic opening weekend</caption>
+            <thead>
+              <tr>
+                <th scope="col">Film</th>
+                <th scope="col" class="num">Trailer views</th>
+                <th scope="col" class="num">Views rank</th>
+                <th scope="col" class="num">Opening weekend</th>
+                <th scope="col" class="num">Opening rank</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <figure class="chart-figure" data-static-chart="slope">
+          <figcaption>YouTube trailer views rank vs. opening weekend rank</figcaption>
+          <div class="chart-box"><canvas role="img" aria-label="Slope chart comparing each film's trailer views rank with its opening weekend rank"></canvas></div>
+          <p class="chart-status" role="status"></p>
+          <p class="chart-takeaway">Green lines climbed (the film did better in theaters than its trailer did on YouTube); red lines fell (YouTube hype didn't translate into ticket sales). Box office source: The Numbers, Top 2018 Domestic.</p>
         </figure>
       </section>
       <section class="analysis-section" aria-labelledby="engagement">
@@ -57,27 +92,41 @@
         <p>Do trailers with more views necessarily have higher audience engagement?</p>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Views and engagement table">
           <table>
-            <caption>Views and engagement — data pending</caption>
+            <caption>Views and engagement rate per trailer</caption>
             <thead>
               <tr>
                 <th scope="col">Trailer</th>
-                <th scope="col">Views</th>
-                <th scope="col">Likes</th>
-                <th scope="col">Comments</th>
-                <th scope="col">Engagement (%)</th>
+                <th scope="col" class="num">Views</th>
+                <th scope="col" class="num">Likes</th>
+                <th scope="col" class="num">Comments</th>
+                <th scope="col" class="num">Engagement (%)</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colspan="5">Awaiting verified query results.</td>
-              </tr>
+              <tr><td>RAMPAGE - OFFICIAL TRAILER 1 [HD]</td><td class="num">12,776,633</td><td class="num">130,537</td><td class="num">24,010</td><td class="num">1.21</td></tr>
+              <tr><td>Deadpool’s “Wet on Wet” Teaser</td><td class="num">10,729,515</td><td class="num">300,465</td><td class="num">13,980</td><td class="num">2.93</td></tr>
+              <tr><td>Incredibles 2 Official Teaser Trailer</td><td class="num">9,920,833</td><td class="num">262,448</td><td class="num">35,134</td><td class="num">3.00</td></tr>
+              <tr><td>A Quiet Place (2018) - Official Teaser Trailer - Paramount Pictures</td><td class="num">4,251,667</td><td class="num">14,290</td><td class="num">2,600</td><td class="num">0.40</td></tr>
+              <tr><td>The Greatest Showman | Official Trailer 2 [HD] | 20th Century FOX</td><td class="num">2,671,756</td><td class="num">12,699</td><td class="num">1,010</td><td class="num">0.51</td></tr>
+              <tr><td>Game Night Official Trailer #1 (2018) Rachel McAdams, Jason Bateman Comedy Movie HD</td><td class="num">2,122,489</td><td class="num">20,085</td><td class="num">1,321</td><td class="num">1.01</td></tr>
+              <tr><td>F The Prom (2017) | Official Trailer HD</td><td class="num">766,661</td><td class="num">16,842</td><td class="num">767</td><td class="num">2.30</td></tr>
+              <tr><td>Batman: Gotham by Gaslight - Exclusive Trailer (2018)</td><td class="num">629,166</td><td class="num">8,985</td><td class="num">1,030</td><td class="num">1.59</td></tr>
+              <tr><td>Dark | Official Trailer [HD] | Netflix</td><td class="num">378,750</td><td class="num">5,642</td><td class="num">675</td><td class="num">1.67</td></tr>
+              <tr><td>THE SHAPE OF WATER - Final Trailer</td><td class="num">366,814</td><td class="num">4,099</td><td class="num">449</td><td class="num">1.24</td></tr>
+              <tr><td>H&amp;M Holiday 2017 starring Nicki Minaj – official teaser</td><td class="num">271,685</td><td class="num">3,330</td><td class="num">0</td><td class="num">1.23</td></tr>
+              <tr><td>A Christmas Prince | Official Trailer [HD] | Netflix</td><td class="num">98,684</td><td class="num">1,714</td><td class="num">244</td><td class="num">1.98</td></tr>
+              <tr><td>Behind The Curtain - OFFICIAL TRAILER</td><td class="num">69,199</td><td class="num">4,237</td><td class="num">220</td><td class="num">6.44</td></tr>
+              <tr><td>Deadpool 2 Teaser Released - Movie Talk</td><td class="num">63,818</td><td class="num">2,080</td><td class="num">543</td><td class="num">4.11</td></tr>
+              <tr><td>Titanic (2017) - Dolby Vision Trailer</td><td class="num">17,129</td><td class="num">455</td><td class="num">101</td><td class="num">3.25</td></tr>
+              <tr><td>Basmati Blues - Trailer</td><td class="num">12,609</td><td class="num">40</td><td class="num">17</td><td class="num">0.45</td></tr>
             </tbody>
           </table>
         </div>
-        <figure class="chart-figure" data-chart="controversy">
-          <figcaption>Controversy map: comment rate versus dislike share for the 400 most-viewed videos (red = more than 20% dislikes)</figcaption>
-          <div class="chart-box"><canvas role="img" aria-label="Scatter plot of comments per 100 views against dislike share for the 400 most-viewed videos"></canvas></div>
-          <p class="chart-status" role="status">Loading chart…</p>
+        <p class="table-note">Engagement rate = (likes + comments) ÷ views × 100.</p>
+        <figure class="chart-figure chart-image">
+          <figcaption>Views vs. engagement rate</figcaption>
+          <img src="assets/charts/img2data.png" alt="Scatter plot of views in millions against engagement rate. Most trailers sit under 1 million views with engagement between 0 and 6.5 percent; the three biggest trailers sit between 1.2 and 3 percent." width="918" height="744" loading="lazy">
+          <p class="chart-takeaway">More views don't mean a bigger share of viewers engage: Rampage had the most views but only a 1.21% engagement rate, compared with 2.93% for Deadpool and 3.00% for Incredibles 2. Views measure reach, while engagement shows how strongly the audience responded.</p>
         </figure>
       </section>
       <section class="analysis-section" aria-labelledby="channels">
@@ -85,71 +134,38 @@
         <p>Which YouTube channels generate the strongest trailer performance?</p>
         <div class="table-wrap" tabindex="0" role="region" aria-label="Channel performance table">
           <table>
-            <caption>Channel performance — data pending</caption>
+            <caption>Average views per trailer, channels with at least two trailers</caption>
             <thead>
               <tr>
                 <th scope="col">Channel</th>
-                <th scope="col">Trailers in sample</th>
-                <th scope="col">Average views</th>
+                <th scope="col" class="num">Trailers in sample</th>
+                <th scope="col" class="num">Average views</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colspan="3">Awaiting verified query results.</td>
-              </tr>
+              <tr><td>20th Century Fox</td><td class="num">2</td><td class="num">6,700,635</td></tr>
+              <tr><td>Paramount Pictures</td><td class="num">2</td><td class="num">2,134,398</td></tr>
+              <tr><td>Netflix</td><td class="num">2</td><td class="num">238,717</td></tr>
             </tbody>
           </table>
         </div>
-        <figure class="chart-placeholder">
-          <figcaption>Average views by channel — visualization placeholder</figcaption>
-          <p>Add the channel averages and matching chart. The screenshot displays three channels. Confirm the available channel count before labeling the chart “top ten.”</p>
-        </figure>
-      </section>
-      <section class="analysis-section" aria-labelledby="timing">
-        <h2 id="timing">When trending videos are published</h2>
-        <p>Which publish days and hours produce the most trending videos?</p>
-        <figure class="chart-figure" data-chart="heatmap">
-          <figcaption>Unique trending videos by publish weekday and hour (UTC)</figcaption>
-          <div class="heatmap-scroll" tabindex="0" role="region" aria-label="Heatmap of trending videos by publish weekday and hour"><div class="heatmap"></div></div>
-          <p class="chart-status" role="status">Loading chart…</p>
+        <figure class="chart-figure chart-image">
+          <figcaption>Average views per trailer by channel (millions)</figcaption>
+          <img src="assets/charts/img3data.png" alt="Bar chart of average views per trailer: 20th Century Fox about 6.7 million, Paramount Pictures about 2.1 million, Netflix about 0.24 million" width="944" height="756" loading="lazy">
+          <p class="chart-takeaway">Among channels with at least two trailers in the sample, 20th Century Fox led with about 6.70 million views per trailer, compared with 2.13 million for Paramount Pictures and 239,000 for Netflix. Each channel had only two videos, so this doesn't establish overall channel performance.</p>
         </figure>
       </section>
     </main>
     <footer class="content-width">Ember · ACAD 274 Designing Interactive Data Systems · USC Iovine and Young Academy</footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
-  <script type="module">
-    import { renderTrajectories, renderHeatmap, renderControversy } from './izzycharts/charts.js';
-
-    // PHP endpoint on the class server (uses api/config.php for the DB connection)
-    const API = '../api/charts.php';
-
-    const RENDERERS = {
-      trajectories: (fig, rows) => renderTrajectories(fig.querySelector('canvas'), rows),
-      controversy:  (fig, rows) => renderControversy(fig.querySelector('canvas'), rows),
-      heatmap:      (fig, rows) => renderHeatmap(fig.querySelector('.heatmap'), rows),
-    };
-
+  <script>
     // Match Chart.js text and gridlines to the dark theme
     Chart.defaults.color = '#bdb5af';
     Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.08)';
     Chart.defaults.maintainAspectRatio = false;
-
-    for (const fig of document.querySelectorAll('[data-chart]')) {
-      const status = fig.querySelector('.chart-status');
-      fetch(`${API}?chart=${fig.dataset.chart}`)
-        .then(async res => {
-          const body = await res.json().catch(() => null);
-          if (!res.ok || !Array.isArray(body)) throw new Error(body?.error || `HTTP ${res.status}`);
-          if (!body.length) throw new Error('The query returned no rows.');
-          RENDERERS[fig.dataset.chart](fig, body);
-          status.remove();
-        })
-        .catch(err => {
-          fig.classList.add('is-error');
-          status.textContent = `Chart data couldn’t load (${err.message}). The data comes from the PHP API, so this page has to be served from the class server.`;
-        });
-    }
   </script>
+  <script src="izzycharts/films-data.js"></script>
+  <script src="izzycharts/static-charts.js"></script>
 </body>
 </html>
